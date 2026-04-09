@@ -9,13 +9,13 @@
         :root { --tz-blue: #1A365D; }
         
         body { 
-            background-color: #e6f0fa; /* 慈濟淺藍底色 */
+            background-color: #e6f0fa; /* 莊嚴平靜的慈濟淺藍 */
             font-family: "Microsoft JhengHei", sans-serif; 
             position: relative; 
             min-height: 100vh;
         }
         
-        /* 蓮華水印背景 */
+        /* 蓮華水印背景設定 */
         body::before {
             content: "";
             position: fixed;
@@ -142,17 +142,17 @@
                 <h2 class="section-title">四、組織歸屬</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">所屬合心和氣區</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">合心區</label>
                         <select id="mainRegion" name="mainRegion" required onchange="updateSubDistricts()" class="input-box bg-blue-50 font-semibold text-blue-900 border-blue-200">
-                            <option value="">請選擇區域</option>
+                            <option value="">請選擇合心區</option>
                             <option value="中區">中區</option><option value="南投區">南投區</option>
                             <option value="台中港區">台中港區</option><option value="苗栗區">苗栗區</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">具體單位 (和氣/協力)</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">和氣區</label>
                         <select id="subDistrict" name="subDistrict" required disabled class="input-box disabled:bg-gray-100 transition-all">
-                            <option value="">請先選擇區域</option>
+                            <option value="">請先選擇合心區</option>
                         </select>
                     </div>
                 </div>
@@ -202,7 +202,7 @@
         function updateSubDistricts() {
             const region = document.getElementById("mainRegion").value;
             const subSelect = document.getElementById("subDistrict");
-            subSelect.innerHTML = '<option value="">請選擇單位</option>';
+            subSelect.innerHTML = '<option value="">請選擇和氣區</option>';
             if (region && subDistricts[region]) {
                 subSelect.disabled = false;
                 subDistricts[region].forEach(d => { subSelect.add(new Option(d, d)); });
@@ -216,7 +216,7 @@
         document.getElementById("perfForm").addEventListener("submit", function(e) {
             e.preventDefault();
             
-            // 檢查電話格式
+            // 檢查電話格式警示
             const phoneVal = document.getElementById("phone").value;
             if (phoneVal.includes("-")) {
                 alert("【警示】連絡電話請勿加入橫線 - ，請輸入10位純數字。");
