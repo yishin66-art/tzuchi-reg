@@ -139,7 +139,7 @@
             </div>
 
             <div class="form-card">
-                <h2 class="section-title">四、組織歸屬</h2>
+                <h2 class="section-title">四、所屬區域</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-1">合心區</label>
@@ -216,7 +216,7 @@
         document.getElementById("perfForm").addEventListener("submit", function(e) {
             e.preventDefault();
             
-            // 檢查電話格式警示
+            // 檢查電話格式
             const phoneVal = document.getElementById("phone").value;
             if (phoneVal.includes("-")) {
                 alert("【警示】連絡電話請勿加入橫線 - ，請輸入10位純數字。");
