@@ -8,15 +8,13 @@
     <style>
         :root { --tz-blue: #1A365D; }
         
-        /* 設定慈濟淺藍背景與莊嚴氛圍 */
         body { 
-            background-color: #e6f0fa; 
+            background-color: #e6f0fa; /* 慈濟淺藍底色 */
             font-family: "Microsoft JhengHei", sans-serif; 
             position: relative; 
             min-height: 100vh;
         }
         
-        /* 蓮華水印背景設定 */
         body::before {
             content: "";
             position: fixed;
@@ -25,7 +23,7 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: 80% auto;
-            opacity: 0.08; 
+            opacity: 0.08; /* 蓮華水印 */
             z-index: -1;
         }
 
@@ -64,13 +62,29 @@
 
     <div class="max-w-3xl mx-auto">
         <header class="text-center mb-10">
-            <h1 class="text-3xl font-bold text-[#1A365D] tracking-widest">2026大巨蛋靜思法髓妙蓮華_大中區報名表</h1>
-            <p class="text-gray-500 mt-2 italic text-sm">「誠心誓願學，勤修增上慧」</p>
+            <h1 class="text-3xl font-bold text-[#1A365D] tracking-widest mb-4">2026大巨蛋靜思法髓妙蓮華_大中區報名表</h1>
+            <div class="text-gray-600 space-y-2 font-medium">
+                <p class="text-lg">誠摯邀請您加入這歷史性的一刻</p>
+                <p>期待在傳法的畫面中——有你、有我、也有他 🤍</p>
+            </div>
         </header>
 
         <form id="perfForm">
+            <div class="form-card border-2 border-blue-100">
+                <h2 class="section-title">一、個資蒐集同意書</h2>
+                <div class="agreement-text mb-4 text-xs">
+                    <p class="font-bold mb-2">財團法人中華民國佛教慈濟慈善事業基金會蒐集個人資料告知事項暨當事人同意書</p>
+                    <p>您已閱讀、瞭解並同意接受本同意書之規定，並同意本會於所列蒐集目的之必要範圍內，蒐集、處理及利用本人之個人資料。若您未滿十八歲，您確認已經法定代理人同意。若您是代填報者，您保證已獲得所有人同意。</p>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <span class="text-sm font-bold text-gray-700">是否同意：</span>
+                    <label class="flex items-center cursor-pointer"><input type="radio" name="agreement" value="同意" required class="mr-2"> 同意</label>
+                    <label class="flex items-center cursor-pointer"><input type="radio" name="agreement" value="不同意" class="mr-2"> 不同意</label>
+                </div>
+            </div>
+
             <div class="form-card">
-                <h2 class="section-title">一、基本資料</h2>
+                <h2 class="section-title">二、基本資料</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-1">姓名 (必填)</label>
@@ -106,7 +120,7 @@
             </div>
 
             <div class="form-card">
-                <h2 class="section-title">二、緊急聯絡資訊</h2>
+                <h2 class="section-title">三、緊急聯絡資訊</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-1">緊急聯絡人姓名 (必填)</label>
@@ -124,7 +138,7 @@
             </div>
 
             <div class="form-card">
-                <h2 class="section-title">三、組織歸屬</h2>
+                <h2 class="section-title">四、組織歸屬</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-1">所屬合心和氣區</label>
@@ -144,7 +158,7 @@
             </div>
 
             <div class="form-card">
-                <h2 class="section-title">四、演繹意願</h2>
+                <h2 class="section-title">五、演繹意願</h2>
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-1">演繹場次 (必填)</label>
@@ -164,19 +178,6 @@
                             <option value="C組－有座位，行動較不方便者">C組－有座位，行動較不方便者</option>
                         </select>
                     </div>
-                </div>
-            </div>
-
-            <div class="form-card">
-                <h2 class="section-title">五、個資蒐集同意書</h2>
-                <div class="agreement-text mb-4 text-xs">
-                    <p class="font-bold mb-2">財團法人中華民國佛教慈濟慈善事業基金會蒐集個人資料告知事項暨當事人同意書</p>
-                    <p>您已閱讀、瞭解並同意接受本同意書之規定，並同意本會於所列蒐集目的之必要範圍內，蒐集、處理及利用本人之個人資料。若您未滿十八歲，您確認已經法定代理人同意。若您是代填報者，您保證已獲得所有人同意。</p>
-                </div>
-                <div class="flex items-center space-x-6">
-                    <span class="text-sm font-bold text-gray-700">是否同意：</span>
-                    <label class="flex items-center cursor-pointer"><input type="radio" name="agreement" value="同意" required class="mr-2"> 同意</label>
-                    <label class="flex items-center cursor-pointer"><input type="radio" name="agreement" value="不同意" class="mr-2"> 不同意</label>
                 </div>
             </div>
 
@@ -213,7 +214,7 @@
         document.getElementById("perfForm").addEventListener("submit", function(e) {
             e.preventDefault();
             
-            // 檢查電話格式：警示偵測 "-"
+            // 檢查電話格式警示
             const phoneVal = document.getElementById("phone").value;
             if (phoneVal.includes("-")) {
                 alert("【警示】連絡電話請勿加入橫線 - ，請輸入10位純數字。");
