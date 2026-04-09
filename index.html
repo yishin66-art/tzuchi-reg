@@ -3,19 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>慈濟經藏演繹報名系統</title>
+    <title>2026大巨蛋靜思法髓妙蓮華_大中區報名表</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root { --tz-blue: #1A365D; }
-        body { background-color: #f3f4f6; font-family: "Microsoft JhengHei", sans-serif; }
+        body { 
+            background-color: #e6f0fa; /* 慈濟淺藍底色 */
+            font-family: "Microsoft JhengHei", sans-serif; 
+            position: relative; 
+            min-height: 100vh;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://cdn.pixabay.com/photo/2013/07/13/10/41/lotus-157648_1280.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 80% auto;
+            opacity: 0.08; /* 蓮華水印 */
+            z-index: -1;
+        }
         .form-card { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 1.5rem; }
         .section-title { color: var(--tz-blue); font-weight: bold; border-left: 5px solid var(--tz-blue); padding-left: 0.75rem; margin-bottom: 1.25rem; font-size: 1.1rem; }
         .input-box { width: 100%; border: 1px solid #d1d5db; border-radius: 8px; padding: 10px; outline: none; transition: 0.2s; }
         .input-box:focus { border-color: var(--tz-blue); box-shadow: 0 0 0 2px rgba(26, 54, 93, 0.1); }
+        .agreement-text { background-color: #f9fafb; border: 1px solid #e5e7eb; padding: 1rem; border-radius: 8px; font-size: 0.875rem; color: #4b5563; line-height: 1.6; }
     </style>
 </head>
 <body class="py-10 px-4 md:px-0">
-
     <div class="max-w-3xl mx-auto">
         <header class="text-center mb-10">
             <h1 class="text-3xl font-bold text-[#1A365D] tracking-widest">2026大巨蛋靜思法髓妙蓮華_大中區報名表</h1>
@@ -27,32 +43,30 @@
                 <h2 class="section-title">一、基本資料</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1 text-xs">姓名 (必填)</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">姓名 (必填)</label>
                         <input type="text" name="name" required class="input-box" placeholder="請填寫本名">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1 text-xs">身分</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">身分</label>
                         <select name="identity" class="input-box">
-                            <option>委員</option>
-                            <option>慈誠</option>
-                            <option>見習/培訓</option>
-                            <option>社區志工/會眾</option>
+                            <option>委員</option><option>慈誠</option><option>見習/培訓</option>
+                            <option>慈青</option><option>慈二三代</option><option>社區志工/會眾</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1 text-xs">連絡電話 (必填)</label>
-                        <input type="tel" name="phone" required class="input-box" placeholder="09xx-xxxxxx">
+                        <label class="block text-sm font-bold text-gray-700 mb-1">連絡電話 (請輸入10位數字，不加 -)</label>
+                        <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" class="input-box" placeholder="09xxxxxxxx">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1 text-xs">身份證字號 (保險用)</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">身份證字號 (重複報名辨別用)</label>
                         <input type="text" name="id_number" required class="input-box" placeholder="請填寫身份證字號" pattern="[A-Z]{1}[1-2]{1}[0-9]{8}">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1 text-xs">出生年月日</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">出生年月日</label>
                         <input type="date" name="birthday" class="input-box">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2 text-xs">性別</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">性別</label>
                         <div class="flex space-x-8">
                             <label class="flex items-center cursor-pointer"><input type="radio" name="gender" value="男" checked class="mr-2"> 男</label>
                             <label class="flex items-center cursor-pointer"><input type="radio" name="gender" value="女" class="mr-2"> 女</label>
@@ -62,20 +76,36 @@
             </div>
 
             <div class="form-card">
-                <h2 class="section-title">二、組織歸屬</h2>
+                <h2 class="section-title">二、緊急聯絡資訊</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1 text-xs">所屬合心和氣區</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">緊急聯絡人姓名 (必填)</label>
+                        <input type="text" name="emergency_name" required class="input-box" placeholder="請填寫姓名">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">與報名者關係 (必填)</label>
+                        <input type="text" name="emergency_rel" required class="input-box" placeholder="例如：夫妻、父子">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-bold text-gray-700 mb-1">緊急聯絡人電話 (不加 -)</label>
+                        <input type="tel" name="emergency_phone" required pattern="[0-9]{10}" class="input-box" placeholder="09xxxxxxxx">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <h2 class="section-title">三、組織歸屬</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">所屬合心和氣區</label>
                         <select id="mainRegion" name="mainRegion" required onchange="updateSubDistricts()" class="input-box bg-blue-50 font-semibold text-blue-900 border-blue-200">
                             <option value="">請選擇區域</option>
-                            <option value="中區">中區</option>
-                            <option value="南投區">南投區</option>
-                            <option value="台中港區">台中港區</option>
-                            <option value="苗栗區">苗栗區</option>
+                            <option value="中區">中區</option><option value="南投區">南投區</option>
+                            <option value="台中港區">台中港區</option><option value="苗栗區">苗栗區</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1 text-xs">具體單位 (和氣/協力)</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">具體單位 (和氣/協力)</label>
                         <select id="subDistrict" name="subDistrict" required disabled class="input-box disabled:bg-gray-100 transition-all">
                             <option value="">請先選擇區域</option>
                         </select>
@@ -84,20 +114,39 @@
             </div>
 
             <div class="form-card">
-                <h2 class="section-title">三、演繹與後勤需求</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+                <h2 class="section-title">四、演繹意願</h2>
+                <div class="space-y-4">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1 text-xs">演繹區域</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">演繹場次 (必填)</label>
+                        <select name="session" required class="input-box">
+                            <option value="">請選擇場次</option>
+                            <option value="11/12場次（中區第三聯區＋南投合心區）">11/12場次（中區第三聯區＋南投合心區）</option>
+                            <option value="11/13場次（中區第二、四聯區）">11/13場次（中區第二、四聯區）</option>
+                            <option value="11/14場次（中區第五聯區＋港區合心＋苗栗合心區）">11/14場次（中區第五聯區＋港區合心＋苗栗合心區）</option>
+                            <option value="11/15場次（中區第一、六聯區）">11/15場次（中區第一、六聯區）</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">演繹組別</label>
                         <select name="zone" class="input-box">
-                            <option value="A">A組－需蹲.跪.坐及能較常來回跑動線</option>
-                            <option value="B">B組－需蹲.跪.坐</option>
-                            <option value="C">C組－有座位，行動較不方便者</option>
+                            <option value="A組－需蹲.跪.坐及能較常來回跑動線">A組－需蹲.跪.坐及能較常來回跑動線</option>
+                            <option value="B組－需蹲.跪.坐">B組－需蹲.跪.坐</option>
+                            <option value="C組－有座位，行動較不方便者">C組－有座位，行動較不方便者</option>
                         </select>
                     </div>
                 </div>
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1 text-xs">健康狀況或特殊備註</label>
-                    <textarea name="note" rows="3" class="input-box" placeholder="例如：膝蓋不便久跪、有特殊病史等..."></textarea>
+            </div>
+
+            <div class="form-card">
+                <h2 class="section-title">五、個資蒐集同意書</h2>
+                <div class="agreement-text mb-4 text-xs">
+                    <p class="font-bold mb-2">財團法人中華民國佛教慈濟慈善事業基金會蒐集個人資料告知事項暨當事人同意書</p>
+                    <p>您已閱讀、瞭解並同意接受本同意書之規定，並同意本會於所列蒐集目的之必要範圍內，蒐集、處理及利用本人之個人資料。</p>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <span class="text-sm font-bold text-gray-700">是否同意：</span>
+                    <label class="flex items-center cursor-pointer"><input type="radio" name="agreement" value="同意" required class="mr-2"> 同意</label>
+                    <label class="flex items-center cursor-pointer"><input type="radio" name="agreement" value="不同意" class="mr-2"> 不同意</label>
                 </div>
             </div>
 
@@ -105,16 +154,11 @@
                 <button type="submit" id="submitBtn" class="w-full bg-[#1A365D] text-white py-4 rounded-xl font-bold text-xl shadow-xl hover:bg-blue-900 transition duration-300">
                     確認送出報名
                 </button>
-                <div class="text-center mt-6 text-gray-400 space-y-1">
-                    <p class="text-sm italic">「法入心，法入行」</p>
-                    <p class="text-xs">慈濟基金會 祝福您福慧雙修</p>
-                </div>
             </div>
         </form>
     </div>
 
     <script>
-        // 單位清單
         const subDistricts = {
             "中區": ["A01-南屯一", "A02-南屯二", "A03-南區一", "A04-南區二", "A05-烏日", "A06-中西一", "A07-中西二", "A08-北中市一", "A09-北中市二", "A10-北中市三", "A11-東區", "A12-大里一", "A13-大里二", "A14-霧峰", "A15-太平一", "A16-太平二", "A17-潭子一", "A18-潭子二", "A19-北屯一", "A20-北屯二", "A21-北屯三", "A22-台中慈院", "A23-豐原一", "A24-豐原二", "A25-豐原三", "A26-東勢", "A27-后里", "A28-西屯一", "A29-西屯二", "A30-大雅", "A31-北屯四"],
             "南投區": ["B01-南投", "B02-草屯", "B03-埔里", "B04-竹山"],
@@ -122,53 +166,56 @@
             "苗栗區": ["D01-苗栗一", "D02-苗栗二", "D03-苗栗三"]
         };
 
-        // 連動選單更新
         function updateSubDistricts() {
             const region = document.getElementById("mainRegion").value;
             const subSelect = document.getElementById("subDistrict");
-            
             subSelect.innerHTML = '<option value="">請選擇單位</option>';
-            
             if (region && subDistricts[region]) {
                 subSelect.disabled = false;
-                subDistricts[region].forEach(d => {
-                    subSelect.add(new Option(d, d));
-                });
+                subDistricts[region].forEach(d => { subSelect.add(new Option(d, d)); });
             } else {
                 subSelect.disabled = true;
-                subSelect.innerHTML = '<option value="">請先選擇區域</option>';
             }
         }
 
-        // 後端連接邏輯
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw1-8JIs70ky1YDkLBjf3UZbRJ7i0gzLgb4l-wNiqQTGH65qm-oyQTH-PSO48VVEo4C/exec";
 
         document.getElementById("perfForm").addEventListener("submit", function(e) {
             e.preventDefault();
+            
+            // 檢查電話格式警示
+            const phoneVal = document.getElementById("phone").value;
+            if (phoneVal.includes("-")) {
+                alert("【警示】連絡電話請勿加入橫線 - ，請輸入10位純數字。");
+                return;
+            }
+
+            if (document.querySelector('input[name="agreement"]:checked').value === "不同意") {
+                alert("需選擇同意個資條款始得報名。"); return;
+            }
             const btn = document.getElementById("submitBtn");
             btn.disabled = true;
-            btn.innerText = "資料傳送中，請稍候...";
+            btn.innerText = "資料比對中...";
 
             const formData = new FormData(this);
             const params = new URLSearchParams(formData);
 
-            fetch(SCRIPT_URL, {
-                method: "POST",
-                body: params,
-                mode: "no-cors"
+            fetch(SCRIPT_URL, { method: "POST", body: params })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === "duplicate") {
+                    alert("【重複報名】" + data.message);
+                } else if (data.result === "success") {
+                    alert("感恩！您的報名資料已成功送出。");
+                    this.reset();
+                    updateSubDistricts();
+                } else {
+                    alert("發生錯誤：" + data.error);
+                }
             })
-            .then(() => {
-                alert("感恩！報名資料已成功傳送至雲端系統。");
-                this.reset();
-                updateSubDistricts();
-            })
-            .catch(err => {
-                console.error("提交錯誤:", err);
-                alert("傳送失敗，請聯繫系統管理員：" + err);
-            })
-            .finally(() => {
-                btn.disabled = false;
-                btn.innerText = "確認送出報名";
+            .catch(err => { alert("傳送異常，請檢查試算表是否已收到資料。"); })
+            .finally(() => { 
+                btn.disabled = false; btn.innerText = "確認送出報名"; 
             });
         });
     </script>
