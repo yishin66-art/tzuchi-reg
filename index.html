@@ -7,15 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root { --tz-blue: #1A365D; }
-        
         body { 
-            background-color: #e6f0fa; /* 莊嚴平靜的慈濟淺藍 */
+            background-color: #e6f0fa; 
             font-family: "Microsoft JhengHei", sans-serif; 
             position: relative; 
             min-height: 100vh;
         }
-        
-        /* 蓮華水印背景設定 */
         body::before {
             content: "";
             position: fixed;
@@ -27,36 +24,11 @@
             opacity: 0.08; 
             z-index: -1;
         }
-
-        .form-card { 
-            background: white; 
-            border-radius: 12px; 
-            padding: 2rem; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-            margin-bottom: 1.5rem; 
-        }
-        
-        .section-title { 
-            color: var(--tz-blue); 
-            font-weight: bold; 
-            border-left: 5px solid var(--tz-blue); 
-            padding-left: 0.75rem; 
-            margin-bottom: 1.25rem; 
-            font-size: 1.1rem; 
-        }
-        
-        .input-box { 
-            width: 100%; border: 1px solid #d1d5db; border-radius: 8px; 
-            padding: 10px; outline: none; transition: 0.2s; 
-        }
-        
+        .form-card { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 1.5rem; }
+        .section-title { color: var(--tz-blue); font-weight: bold; border-left: 5px solid var(--tz-blue); padding-left: 0.75rem; margin-bottom: 1.25rem; font-size: 1.1rem; }
+        .input-box { width: 100%; border: 1px solid #d1d5db; border-radius: 8px; padding: 10px; outline: none; transition: 0.2s; }
         .input-box:focus { border-color: var(--tz-blue); box-shadow: 0 0 0 2px rgba(26, 54, 93, 0.1); }
-        
-        .agreement-text { 
-            background-color: #f9fafb; border: 1px solid #e5e7eb; 
-            padding: 1rem; border-radius: 8px; font-size: 0.875rem; 
-            color: #4b5563; line-height: 1.6; 
-        }
+        .agreement-text { background-color: #f9fafb; border: 1px solid #e5e7eb; padding: 1rem; border-radius: 8px; font-size: 0.875rem; color: #4b5563; line-height: 1.6; }
     </style>
 </head>
 <body class="py-10 px-4 md:px-0">
@@ -92,7 +64,7 @@
                         <input type="text" name="name" required class="input-box" placeholder="請填寫本名">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">身份</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">身份 (必填)</label>
                         <select name="identity" required class="input-box">
                             <option value="" disabled selected>請選擇身份</option>
                             <option>委員</option><option>慈誠</option><option>見習/培訓</option>
@@ -100,16 +72,16 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">連絡電話 (請輸入10位數字，不加 -)</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">連絡電話 (必填，請輸入10位數字，不加 -)</label>
                         <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" class="input-box" placeholder="09xxxxxxxx">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">身份證字號 (重複報名辨別用)</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">身份證字號 (必填，重複報名辨別用)</label>
                         <input type="text" name="id_number" required class="input-box" placeholder="請填寫身份證字號" pattern="[A-Z]{1}[1-2]{1}[0-9]{8}">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">出生年月日</label>
-                        <input type="date" name="birthday" class="input-box">
+                        <label class="block text-sm font-bold text-gray-700 mb-1">出生年月日 (必填)</label>
+                        <input type="date" name="birthday" required class="input-box">
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">性別</label>
@@ -133,7 +105,7 @@
                         <input type="text" name="emergency_rel" required class="input-box" placeholder="例如：夫妻、父子">
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-bold text-gray-700 mb-1">緊急聯絡人電話 (不加 -)</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">緊急聯絡人電話 (必填，不加 -)</label>
                         <input type="tel" name="emergency_phone" required pattern="[0-9]{10}" class="input-box" placeholder="09xxxxxxxx">
                     </div>
                 </div>
@@ -143,7 +115,7 @@
                 <h2 class="section-title">四、所屬區域</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">合心區</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">合心區 (必填)</label>
                         <select id="mainRegion" name="mainRegion" required onchange="updateSubDistricts()" class="input-box bg-blue-50 font-semibold text-blue-900 border-blue-200">
                             <option value="">請選擇合心區</option>
                             <option value="中區">中區</option><option value="南投區">南投區</option>
@@ -151,7 +123,7 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">和氣區</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">和氣區 (必填)</label>
                         <select id="subDistrict" name="subDistrict" required disabled class="input-box disabled:bg-gray-100 transition-all">
                             <option value="">請先選擇合心區</option>
                         </select>
