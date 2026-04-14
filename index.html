@@ -24,11 +24,26 @@
             opacity: 0.08; 
             z-index: -1;
         }
-        .form-card { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 1.5rem; }
+        .form-card { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 1.5rem; transition: all 0.3s ease;}
         .section-title { color: var(--tz-blue); font-weight: bold; border-left: 5px solid var(--tz-blue); padding-left: 0.75rem; margin-bottom: 1.25rem; font-size: 1.1rem; }
         .input-box { width: 100%; border: 1px solid #d1d5db; border-radius: 8px; padding: 10px; outline: none; transition: 0.2s; }
         .input-box:focus { border-color: var(--tz-blue); box-shadow: 0 0 0 2px rgba(26, 54, 93, 0.1); }
         .agreement-text { background-color: #f9fafb; border: 1px solid #e5e7eb; padding: 1rem; border-radius: 8px; font-size: 0.875rem; color: #4b5563; line-height: 1.6; }
+        
+        /* 增加：尚未同意時的表單反灰與禁用視覺效果 */
+        #mainFieldset:disabled .form-card {
+            opacity: 0.6;
+            pointer-events: none; /* 確保無法點擊 */
+        }
+        #mainFieldset:disabled .input-box {
+            background-color: #f3f4f6;
+        }
+        #mainFieldset:disabled button {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 <body class="py-10 px-4 md:px-0">
@@ -56,115 +71,133 @@
                 </div>
             </div>
 
-            <div class="form-card">
-                <h2 class="section-title">二、基本資料</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">姓名 (必填)</label>
-                        <input type="text" name="name" required class="input-box" placeholder="請填寫本名">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">身份 (必填)</label>
-                        <select name="identity" required class="input-box">
-                            <option value="" disabled selected>請選擇身份</option>
-                            <option>委員</option><option>慈誠</option><option>見習/培訓</option>
-                            <option>慈青</option><option>慈二三代</option><option>社區志工/會眾</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">連絡電話 (必填，請輸入10位數字，不加 -)</label>
-                        <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" class="input-box" placeholder="09xxxxxxxx">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">身份證字號 (必填，重複報名辨別用)</label>
-                        <input type="text" name="id_number" required class="input-box" placeholder="請填寫身份證字號" pattern="[A-Z]{1}[1-2]{1}[0-9]{8}">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">出生年月日 (必填)</label>
-                        <input type="date" name="birthday" required class="input-box">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2">性別</label>
-                        <div class="flex space-x-8">
-                            <label class="flex items-center cursor-pointer"><input type="radio" name="gender" value="男" checked class="mr-2"> 男</label>
-                            <label class="flex items-center cursor-pointer"><input type="radio" name="gender" value="女" class="mr-2"> 女</label>
+            <fieldset id="mainFieldset" disabled class="border-0 p-0 m-0 min-w-0">
+                <div class="form-card">
+                    <h2 class="section-title">二、基本資料</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">姓名 (必填)</label>
+                            <input type="text" name="name" required class="input-box" placeholder="請填寫本名">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">身份 (必填)</label>
+                            <select name="identity" required class="input-box">
+                                <option value="" disabled selected>請選擇身份</option>
+                                <option>委員</option><option>慈誠</option><option>見習/培訓</option>
+                                <option>慈青</option><option>慈二三代</option><option>社區志工/會眾</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">連絡電話 (必填，請輸入10位數字，不加 -)</label>
+                            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" class="input-box" placeholder="09xxxxxxxx">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">身份證字號 (必填，重複報名辨別用)</label>
+                            <input type="text" name="id_number" required class="input-box" placeholder="請填寫身份證字號" pattern="[A-Z]{1}[1-2]{1}[0-9]{8}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">出生年月日 (必填)</label>
+                            <input type="date" name="birthday" required class="input-box">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">性別</label>
+                            <div class="flex space-x-8">
+                                <label class="flex items-center cursor-pointer"><input type="radio" name="gender" value="男" checked class="mr-2"> 男</label>
+                                <label class="flex items-center cursor-pointer"><input type="radio" name="gender" value="女" class="mr-2"> 女</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-card">
-                <h2 class="section-title">三、緊急聯絡資訊</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">緊急聯絡人姓名 (必填)</label>
-                        <input type="text" name="emergency_name" required class="input-box" placeholder="請填寫姓名">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">與報名者關係 (必填)</label>
-                        <input type="text" name="emergency_rel" required class="input-box" placeholder="例如：夫妻、父子">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-bold text-gray-700 mb-1">緊急聯絡人電話 (必填，不加 -)</label>
-                        <input type="tel" name="emergency_phone" required pattern="[0-9]{10}" class="input-box" placeholder="09xxxxxxxx">
+                <div class="form-card">
+                    <h2 class="section-title">三、緊急聯絡資訊</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">緊急聯絡人姓名 (必填)</label>
+                            <input type="text" name="emergency_name" required class="input-box" placeholder="請填寫姓名">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">與報名者關係 (必填)</label>
+                            <input type="text" name="emergency_rel" required class="input-box" placeholder="例如：夫妻、父子">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-bold text-gray-700 mb-1">緊急聯絡人電話 (必填，不加 -)</label>
+                            <input type="tel" name="emergency_phone" required pattern="[0-9]{10}" class="input-box" placeholder="09xxxxxxxx">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-card">
-                <h2 class="section-title">四、所屬區域</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">合心區 (必填)</label>
-                        <select id="mainRegion" name="mainRegion" required onchange="updateSubDistricts()" class="input-box bg-blue-50 font-semibold text-blue-900 border-blue-200">
-                            <option value="">請選擇合心區</option>
-                            <option value="中區">中區</option><option value="南投區">南投區</option>
-                            <option value="台中港區">台中港區</option><option value="苗栗區">苗栗區</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">和氣區 (必填)</label>
-                        <select id="subDistrict" name="subDistrict" required disabled class="input-box disabled:bg-gray-100 transition-all">
-                            <option value="">請先選擇合心區</option>
-                        </select>
+                <div class="form-card">
+                    <h2 class="section-title">四、所屬區域</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">合心區 (必填)</label>
+                            <select id="mainRegion" name="mainRegion" required onchange="updateSubDistricts()" class="input-box bg-blue-50 font-semibold text-blue-900 border-blue-200">
+                                <option value="">請選擇合心區</option>
+                                <option value="中區">中區</option><option value="南投區">南投區</option>
+                                <option value="台中港區">台中港區</option><option value="苗栗區">苗栗區</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">和氣區 (必填)</label>
+                            <select id="subDistrict" name="subDistrict" required disabled class="input-box disabled:bg-gray-100 transition-all">
+                                <option value="">請先選擇合心區</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-card">
-                <h2 class="section-title">五、演繹意願</h2>
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">演繹場次 (必填)</label>
-                        <select name="session" required class="input-box">
-                            <option value="">請選擇場次</option>
-                            <option value="11/12場次（中區第三聯區＋南投合心區）">11/12場次（中區第三聯區＋南投合心區）</option>
-                            <option value="11/13場次（中區第二、四聯區）">11/13場次（中區第二、四聯區）</option>
-                            <option value="11/14場次（中區第五聯區＋港區合心＋苗栗合心區）">11/14場次（中區第五聯區＋港區合心＋苗栗合心區）</option>
-                            <option value="11/15場次（中區第一、六聯區）">11/15場次（中區第一、六聯區）</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">演繹組別 (必填)</label>
-                        <select name="zone" required class="input-box">
-                            <option value="">請選擇組別</option>
-                            <option value="A組－需蹲.跪.坐及能較常來回跑動線">A組－需蹲.跪.坐及能較常來回跑動線</option>
-                            <option value="B組－需蹲.跪.坐">B組－需蹲.跪.坐</option>
-                            <option value="C組－有座位，行動較不方便者">C組－有座位，行動較不方便者</option>
-                        </select>
+                <div class="form-card">
+                    <h2 class="section-title">五、演繹意願</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">演繹場次 (必填)</label>
+                            <select name="session" required class="input-box">
+                                <option value="">請選擇場次</option>
+                                <option value="11/12場次（中區第三聯區＋南投合心區）">11/12場次（中區第三聯區＋南投合心區）</option>
+                                <option value="11/13場次（中區第二、四聯區）">11/13場次（中區第二、四聯區）</option>
+                                <option value="11/14場次（中區第五聯區＋港區合心＋苗栗合心區）">11/14場次（中區第五聯區＋港區合心＋苗栗合心區）</option>
+                                <option value="11/15場次（中區第一、六聯區）">11/15場次（中區第一、六聯區）</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">演繹組別 (必填)</label>
+                            <select name="zone" required class="input-box">
+                                <option value="">請選擇組別</option>
+                                <option value="A組－需蹲.跪.坐及能較常來回跑動線">A組－需蹲.跪.坐及能較常來回跑動線</option>
+                                <option value="B組－需蹲.跪.坐">B組－需蹲.跪.坐</option>
+                                <option value="C組－有座位，行動較不方便者">C組－有座位，行動較不方便者</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="mb-10">
-                <button type="submit" id="submitBtn" class="w-full bg-[#1A365D] text-white py-4 rounded-xl font-bold text-xl shadow-xl hover:bg-blue-900 transition duration-300">
-                    確認送出報名
-                </button>
-            </div>
+                <div class="mb-10">
+                    <button type="submit" id="submitBtn" class="w-full bg-[#1A365D] text-white py-4 rounded-xl font-bold text-xl shadow-xl hover:bg-blue-900 transition duration-300">
+                        確認送出報名
+                    </button>
+                </div>
+            </fieldset>
         </form>
     </div>
 
     <script>
+        // --- 新增：監聽同意書選項，切換表單啟用狀態 ---
+        const agreementRadios = document.querySelectorAll('input[name="agreement"]');
+        const mainFieldset = document.getElementById('mainFieldset');
+
+        agreementRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                // 只有選擇「同意」時才解除 disabled 鎖定
+                if (this.value === '同意') {
+                    mainFieldset.disabled = false;
+                } else {
+                    mainFieldset.disabled = true;
+                }
+            });
+        });
+        // ---------------------------------------------
+
         const subDistricts = {
             "中區": ["A01-南屯一", "A02-南屯二", "A03-南區一", "A04-南區二", "A05-烏日", "A06-中西一", "A07-中西二", "A08-北中市一", "A09-北中市二", "A10-北中市三", "A11-東區", "A12-大里一", "A13-大里二", "A14-霧峰", "A15-太平一", "A16-太平二", "A17-潭子一", "A18-潭子二", "A19-北屯一", "A20-北屯二", "A21-北屯三", "A22-台中慈院", "A23-豐原一", "A24-豐原二", "A25-豐原三", "A26-東勢", "A27-后里", "A28-西屯一", "A29-西屯二", "A30-大雅", "A31-北屯四"],
             "南投區": ["B01-南投", "B02-草屯", "B03-埔里", "B04-竹山"],
@@ -193,14 +226,18 @@
                 alert("【警示】連絡電話請勿加入橫線 - ，請輸入10位純數字。");
                 return;
             }
+            
+            // 此處判斷保留作為雙重防護（雖然未同意時送出按鈕也無法點擊）
             if (document.querySelector('input[name="agreement"]:checked').value === "不同意") {
                 alert("需選擇同意個資條款始得報名。"); return;
             }
+
             const btn = document.getElementById("submitBtn");
             btn.disabled = true;
             btn.innerText = "資料比對與傳送中...";
             const formData = new FormData(this);
             const params = new URLSearchParams(formData);
+            
             fetch(SCRIPT_URL, { method: "POST", body: params })
             .then(response => response.json())
             .then(data => {
@@ -210,6 +247,8 @@
                     alert("感恩！您的報名資料已成功送出。");
                     this.reset();
                     updateSubDistricts();
+                    // 送出成功後，將表單重新鎖上
+                    mainFieldset.disabled = true; 
                 } else {
                     alert("發生錯誤：" + data.error);
                 }
